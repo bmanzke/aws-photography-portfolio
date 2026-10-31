@@ -3,6 +3,9 @@
 *.tfstate.*
 .terraform/
 
+# Generated Lambda package — Terraform rebuilds it from /lambda on every run
+terraform/lambda.zip
+
 # macOS / Python noise
 .DS_Store
 __pycache__/
