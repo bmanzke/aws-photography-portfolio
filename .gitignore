@@ -1,0 +1,12 @@
+# Terraform state — Terraform's memory. Never commit it.
+*.tfstate
+*.tfstate.*
+.terraform/
+
+# macOS / Python noise
+.DS_Store
+__pycache__/
+*.pyc
+
+# Secrets — none should ever live in this repo
+.env
