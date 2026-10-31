@@ -26,8 +26,10 @@ resource "aws_iam_role" "github_deploy" {
         StringEquals = {
           "token.actions.githubusercontent.com:aud" = "sts.amazonaws.com"
         }
+        # GitHub's sub claim now embeds numeric IDs (found via CloudTrail,
+        # Oct 31 2026): repo:<owner>@<owner-id>/<repo>@<repo-id>:ref:...
         StringLike = {
-          "token.actions.githubusercontent.com:sub" = "repo:bmanzke/aws-photography-portfolio:*"
+          "token.actions.githubusercontent.com:sub" = "repo:bmanzke@214350599/aws-photography-portfolio@1440835875:*"
         }
       }
     }]
