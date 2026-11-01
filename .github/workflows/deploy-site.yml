@@ -22,7 +22,7 @@ jobs:
           aws-region: us-east-1
 
       - name: Sync site to S3
-        run: aws s3 sync site/ s3://stemandstars-tf.com --delete --exclude photos.json
-
+        run: aws s3 cp site/index.html s3://stemandstars-tf.com/index.html
+    
       - name: Invalidate CloudFront cache
         run: aws cloudfront create-invalidation --distribution-id E1HLUSUZWTAUFA --paths "/*"
