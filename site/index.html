@@ -33,6 +33,11 @@ footer { text-align:center; margin-top:3.5rem; padding:2rem 1rem 3rem; border-to
 .fade-band { height:110px; background:linear-gradient(to bottom, rgba(217,164,65,.32), rgba(217,164,65,.05) 55%, rgba(0,0,0,0)); }
 .contact-btn { display:inline-block; padding:.7rem 1.7rem; border:1px solid #d9a441; border-radius:999px; color:#d9a441; text-decoration:none; letter-spacing:.14em; text-transform:uppercase; font-size:.78rem; transition:background .3s ease, color .3s ease; }
 .contact-btn:hover { background:#d9a441; color:#0e0e11; }
+.contact-form { max-width:480px; margin:0 auto; display:flex; flex-direction:column; gap:.8rem; }
+.contact-form input, .contact-form textarea { background:#15151a; border:1px solid #2a2a31; border-radius:8px; padding:.75rem 1rem; color:#e8e6e1; font:inherit; }
+.contact-form input:focus, .contact-form textarea:focus { outline:none; border-color:#d9a441; }
+.contact-form .contact-btn { background:transparent; cursor:pointer; font:inherit; align-self:center; }
+#form-status { min-height:1.2em; color:#d9a441; font-size:.9rem; }
 .lightbox { position:fixed; inset:0; background:rgba(5,5,8,.94); display:none; flex-direction:column; align-items:center; justify-content:center; z-index:50; padding:1.5rem; }
 .lightbox.open { display:flex; }
 .lightbox img { width:auto; height:auto; max-width:92vw; max-height:82vh; border-radius:6px; box-shadow:0 24px 60px rgba(0,0,0,.7); }
@@ -59,7 +64,13 @@ footer { text-align:center; margin-top:3.5rem; padding:2rem 1rem 3rem; border-to
      targets from my own backyard. Stem and Stars is where both halves live.</p>
 </section>
 <footer>
-  <p><a class="contact-btn" href="mailto:brett.manzke@gmail.com?subject=Stem%20and%20Stars%20Inquiry">Contact Me</a></p>
+  <form id="contact-form" class="contact-form">
+    <input type="text" name="name" placeholder="Your name" required>
+    <input type="email" name="email" placeholder="Your email" required>
+    <textarea name="message" rows="5" placeholder="Your message" required></textarea>
+    <button type="submit" class="contact-btn">Send Message</button>
+    <p id="form-status"></p>
+  </form>
   <p>&copy; 2026 Brett Manzke &middot; Plainfield, Illinois</p>
   <p class="built">Hand-built on AWS &middot; S3 &middot; CloudFront &middot; Lambda &middot; DynamoDB</p>
 </footer>
