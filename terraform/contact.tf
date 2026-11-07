@@ -29,7 +29,7 @@ resource "aws_iam_role_policy" "contact_form" {
         Sid      = "SendInquiryEmail"
         Effect   = "Allow"
         Action   = "ses:SendEmail"
-        Resource = "arn:aws:ses:us-east-1:288581186506:identity/brett.manzke@gmail.com"
+        Resource = [aws_ses_domain_identity.stemandstars.arn, "arn:aws:ses:us-east-1:288581186506:identity/brett.manzke@gmail.com"]
       },
       {
         Sid      = "WriteLogs"
@@ -57,6 +57,7 @@ resource "aws_lambda_function" "contact_form" {
   environment {
     variables = {
       RECIPIENT_EMAIL = "brett.manzke@gmail.com"
+      SENDER_EMAIL = "inquiries@stemandstars.com"
     }
   }
 }
@@ -103,4 +104,34 @@ resource "aws_lambda_permission" "allow_apigw" {
 
 output "contact_endpoint" {
   value = "${aws_apigatewayv2_api.contact.api_endpoint}/contact"
+}
+
+# Domain identity: SES may send as stemandstars.com, signed (DKIM)
+data "aws_route53_zone" "stemandstars" {
+  name = "stemandstars.com"
+}
+
+resource "aws_ses_domain_identity" "stemandstars" {
+  domain = "stemandstars.com"
+}
+
+resource "aws_route53_record" "ses_verification" {
+  zone_id = data.aws_route53_zone.stemandstars.zone_id
+  name    = "_amazonses.stemandstars.com"
+  type    = "TXT"
+  ttl     = "600"
+  records = [aws_ses_domain_identity.stemandstars.verification_token]
+}
+
+resource "aws_ses_domain_dkim" "stemandstars" {
+  domain = aws_ses_domain_identity.stemandstars.domain
+}
+
+resource "aws_route53_record" "dkim" {
+  count   = 3
+  zone_id = data.aws_route53_zone.stemandstars.zone_id
+  name    = "${aws_ses_domain_dkim.stemandstars.dkim_tokens[count.index]}._domainkey.stemandstars.com"
+  type    = "CNAME"
+  ttl     = "600"
+  records = ["${aws_ses_domain_dkim.stemandstars.dkim_tokens[count.index]}.dkim.amazonses.com"]
 }

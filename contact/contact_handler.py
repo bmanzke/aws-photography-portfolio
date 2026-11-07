@@ -4,6 +4,7 @@ import os
 import boto3
 
 RECIPIENT = os.environ["RECIPIENT_EMAIL"]
+SENDER = os.environ["SENDER_EMAIL"]
 ses = boto3.client("ses")
 
 def lambda_handler(event, context):
@@ -22,7 +23,7 @@ def lambda_handler(event, context):
     
     try:
         ses.send_email(
-            Source=RECIPIENT,
+            Source=SENDER,
             Destination={"ToAddresses": [RECIPIENT]},
             ReplyToAddresses=[email],
             Message={
