@@ -19,7 +19,9 @@
 .grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(280px,1fr)); gap:1rem; max-width:1200px; margin:2rem auto; padding:0 1rem; }
 figure { margin:0; }
 img { width:100%; height:auto; display:block; border-radius:4px; }
-figcaption { text-align:center; padding:.5rem; color:#bbb; font-style:italic; }
+figcaption { text-align:center; padding:.6rem .5rem 1rem; }
+.cap-title { display:block; font-weight:600; letter-spacing:.04em; color:#eee; }
+.cap-meta { display:block; margin-top:.25rem; font-size:.78rem; letter-spacing:.14em; text-transform:uppercase; color:#d9a441; }
 </style>
 </head>
 <body>
@@ -37,11 +39,19 @@ figcaption { text-align:center; padding:.5rem; color:#bbb; font-style:italic; }
     .then(r => r.json())
     .then(photos => {
       const gallery = document.getElementById('gallery');
+      const months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
       photos.forEach(p => {
+        let meta = '';
+        if (p.date) {
+          const parts = p.date.split(':');
+          meta = months[parseInt(parts[1], 10) - 1] + ' ' + 
+          parseInt(parts[2], 10) + ', ' + parts[0];
+        }
         const fig = document.createElement('figure');
         fig.innerHTML = '<a href="' + p.image + '"><img src="' + p.thumb +
-                        '" alt="' + p.title + '"></a><figcaption>' +
-                        p.title + '</figcaption>';
+                        '" alt="' + p.title + '"></a><figcaption><span class="cap-title">' +
+                        p.title + '</span><span class="cap-meta">' + meta + 
+                          '</span></figcaption>';
         gallery.appendChild(fig);
       });
     });
