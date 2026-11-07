@@ -22,6 +22,11 @@ img { width:100%; height:auto; display:block; border-radius:4px; }
 figcaption { text-align:center; padding:.6rem .5rem 1rem; }
 .cap-title { display:block; font-weight:600; letter-spacing:.04em; color:#eee; }
 .cap-meta { display:block; margin-top:.25rem; font-size:.78rem; letter-spacing:.14em; text-transform:uppercase; color:#d9a441; }
+.about { max-width:760px; margin:3.5rem auto 0; padding:0 1rem; text-align:center; }
+.about h2 { font-family: 'Playfair Display', Georgia, serif; font-size:2rem; font-weight:600; margin: 0 0 1rem; }
+.about p { line-height:1.7; color:#ccc; margin:0; }
+footer { text-align:center; margin-top:3.5rem; padding:2rem 1rem 3rem; border-top:1px solid #232329; color:#888; font-size:.85rem; }
+.built { letter-spacing:.14em; text-transform:uppercase; font-size:.68rem; color:#666; }
 </style>
 </head>
 <body>
@@ -34,6 +39,17 @@ figcaption { text-align:center; padding:.6rem .5rem 1rem; }
   </div>
 </header>
 <div class="grid" id="gallery"></div>
+<section class=""about">
+  <h2>About</h2>
+  <p>I&rsquo;m Brett Manzke, a photographer based in Plainfield, Illinois. I chase two
+     kinds of light: the small &mdash; macro views of flowers and plants most people
+     walk right past &mdash; and the vast &mdash; eclipses, the Moon, and deep-sky
+     targets from my own backyard. Stem and Stars is where both halves live.</p>
+</section>
+<footer>
+  <p>&copy; 2026 Brett Manzke &middot; Plainfield, Illinois</p>
+  <p class="built">Hand-built on AWS &middot; S3 &middot; CloudFront &middot; Lambda &middot; DynamoDB</p>
+</footer>
 <script>
   fetch('photos.json')
     .then(r => r.json())
