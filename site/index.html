@@ -8,7 +8,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Inter:wght@400;600&display=swap" rel="stylesheet">
 <style>
- body { background:#0e0e11; color:#eee; font-family:'Inter', Arial, sans-serif; margin:0; padding:0; }
+ body { background:#0e0e11; background-image:linear-gradient(90deg, rgba(217,164,65,.07), rgba(217,164,65,0) 14%, rgba(217,164,65,0) 86%, rgba(217,164,65,.07)); color:#eee; font-family:'Inter', Arial, sans-serif; margin:0; padding:0; }
 .hero { position:relative; height:78vh; min-height:420px; overflow:hidden; }
 .hero-img { position:absolute; inset:0; width:100%; height:100%; object-fit:cover; opacity:0; animation:heroFade 16s ease-in-out infinite; }
 #hero-b { animation-delay:8s; }
@@ -30,6 +30,9 @@ figcaption { text-align:center; padding:.6rem .5rem 1rem; }
 .about p { line-height:1.7; color:#ccc; margin:0; }
 footer { text-align:center; margin-top:3.5rem; padding:2rem 1rem 3rem; border-top:1px solid #232329; color:#888; font-size:.85rem; }
 .built { letter-spacing:.14em; text-transform:uppercase; font-size:.68rem; color:#666; }
+.fade-band { height:110px; background:linear-gradient(to bottom, rgba(217,164,65,.32), rgba(217,164,65,.05) 55%, rgba(0,0,0,0)); }
+.contact-btn { display:inline-block; padding:.7rem 1.7rem; border:1px solid #d9a441; border-radius:999px; color:#d9a441; text-decoration:none; letter-spacing:.14em; text-transform:uppercase; font-size:.78rem; transition:background .3s ease, color .3s ease; }
+.contact-btn:hover { background:#d9a441; color:#0e0e11; }
 </style>
 </head>
 <body>
@@ -41,6 +44,7 @@ footer { text-align:center; margin-top:3.5rem; padding:2rem 1rem 3rem; border-to
     <p>Photography by Brett Manzke</p>
   </div>
 </header>
+<div class="fade-band"></div>
 <div class="grid" id="gallery"></div>
 <section class="about">
   <h2>About</h2>
@@ -50,6 +54,7 @@ footer { text-align:center; margin-top:3.5rem; padding:2rem 1rem 3rem; border-to
      targets from my own backyard. Stem and Stars is where both halves live.</p>
 </section>
 <footer>
+  <p><a class="contact-btn" href="mailto:brett.manzke@gmail.com?subject=Stem%20and%20Stars%20Inquiry">Contact Me</a></p>
   <p>&copy; 2026 Brett Manzke &middot; Plainfield, Illinois</p>
   <p class="built">Hand-built on AWS &middot; S3 &middot; CloudFront &middot; Lambda &middot; DynamoDB</p>
 </footer>
