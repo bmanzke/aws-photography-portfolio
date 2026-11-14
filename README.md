@@ -56,6 +56,6 @@ flowchart LR
 - **Phase 1** (site, domain, HTTPS) — complete Oct 24, 2026.
 - **Phase 2** (automated pipeline + catalog) — complete Oct 31, 2026.
 - **Phase 3** (Terraform rebuild + GitHub Actions CI/CD with OIDC) — complete Nov 1, 2026. The live site runs entirely on the Terraform-managed stack.
-- **Design phase** — complete Nov 6, 2026: hand-written HTML/CSS/JavaScript front end (rotating hero, data-driven gallery with title/date captions, lightbox), still rendered from the same `photos.json` contract. 15 photos live.
+- **Design phase** — complete Nov 6, 2026: hand-written HTML/CSS/JavaScript front end (rotating hero, data-driven gallery with title/date captions, lightbox), still rendered from the same `photos.json` contract. Photos live.
 - **Project 1.5** (AWS-native contact form) — complete Nov 7, 2026: HTTP API + Lambda + SES, DKIM-signed sending from the site's own domain.
 - **Next:** a client portfolio site on the same pattern, then the Glacier RAW-backup pipeline.
